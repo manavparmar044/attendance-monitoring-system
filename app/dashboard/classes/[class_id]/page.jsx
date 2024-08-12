@@ -78,7 +78,15 @@ function Page() {
     { 
       field: "isDefaulter", 
       headerName: "Defaulter", 
-      cellRenderer: params => params.value ? 'True' : 'False'
+      valueGetter: params => {
+        if (classData && classData.attendance) {
+          const totalAttendanceRecords = classData.attendance.length;
+          const attendedDatesCount = params.data.attendedDates ? params.data.attendedDates.length : 0;
+          const attendancePercentage = totalAttendanceRecords ? (attendedDatesCount / totalAttendanceRecords) * 100 : 0;
+          return attendancePercentage < 75;
+        }
+        return true;
+      }
     },
     { field: "delete", cellRenderer: deleteButton, headerName: "Delete" },
   ]

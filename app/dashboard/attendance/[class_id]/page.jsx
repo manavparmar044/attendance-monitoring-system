@@ -65,7 +65,11 @@ function Page() {
           attendedDates: student.attendedDates ? [...student.attendedDates, dateStr] : [dateStr],
         };
       }
-      return student;
+      // Ensure attendedDates is initialized
+      return {
+        ...student,
+        attendedDates: student.attendedDates || [],
+      };
     });
   
     // Create new attendance record
@@ -123,8 +127,8 @@ function Page() {
       valueGetter: params => {
         if (classData && classData.attendance) {
           const totalAttendanceRecords = classData.attendance.length;
-          const attendedDatesCount = params.data.attendedDates.length;
-          return totalAttendanceRecords ? (attendedDatesCount / totalAttendanceRecords).toFixed(2) * 100 : '0.00';
+          const attendedDatesCount = params.data.attendedDates ? params.data.attendedDates.length : 0;
+          return totalAttendanceRecords ? ((attendedDatesCount / totalAttendanceRecords) * 100).toFixed(2) : '0.00';
         }
         return '0.00';
       }
@@ -133,9 +137,17 @@ function Page() {
       field: "isDefaulter", 
       headerName: "Defaulter", 
       width: 200,
-      cellRenderer: params => params.value ? 'True' : 'False'
+      valueGetter: params => {
+        if (classData && classData.attendance) {
+          const totalAttendanceRecords = classData.attendance.length;
+          const attendedDatesCount = params.data.attendedDates ? params.data.attendedDates.length : 0;
+          const attendancePercentage = totalAttendanceRecords ? (attendedDatesCount / totalAttendanceRecords) * 100 : 0;
+          return attendancePercentage < 75;
+        }
+        return true;
+      }
     },
-    { field: "present", cellRenderer: attendanceButton, headerName: "Present",width: 250 },
+    { field: "present", cellRenderer: attendanceButton, headerName: "Present", width: 250 },
   ];
 
   return (

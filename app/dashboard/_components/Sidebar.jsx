@@ -43,7 +43,7 @@ function Sidebar() {
 
   return (
     <div
-      className={`flex flex-col bg-[#163665] pt-2 text-white h-[100vh] ${
+      className={`flex flex-col bg-primary pt-2 text-white h-[100vh] ${
         isOpen ? "w-64" : "w-20"
       } transition-all duration-300 md:relative overflow-hidden`}
     >
@@ -56,7 +56,7 @@ function Sidebar() {
         >
           <button
             onClick={toggleSidebar}
-            className="p-2 bg-slate-800 rounded-md"
+            className="p-2 bg-secondary rounded-md"
           >
             <Menu />
           </button>
@@ -69,7 +69,7 @@ function Sidebar() {
             <Link
               href={nav.path}
               key={nav.id}
-              className={`flex items-center w-full p-3 gap-5 my-2 cursor-pointer hover:bg-[#0d2447] hover:text-white rounded-md ${
+              className={`flex items-center w-full p-3 gap-5 my-2 cursor-pointer hover:bg-secondary hover:text-white rounded-md ${
                 active ? "bg-white text-secondary" : ""
               }`}
             >

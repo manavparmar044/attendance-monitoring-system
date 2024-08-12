@@ -1,7 +1,14 @@
 "use client"
+import { useUser } from '@clerk/nextjs'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 
 function Hero() {
+  const {user} = useUser()
+  const router = useRouter()
+  if(user){
+    router.push("/dashboard")
+  }
   return (
     <div>
         <section className="bg-gray-200 h-screen">

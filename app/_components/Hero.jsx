@@ -38,7 +38,7 @@ function Hero() {
             src="/Macbook_Air_Mockup_2.png" 
             width={1000} 
             height={500} 
-            className='w-[120rem] mt-[-6rem] md:mt-[-4rem] lg:mt-[-8rem] xl:mt-0'
+            className='w-[120rem] mt-[-6rem] md:mt-[-4rem] lg:mt-[-8rem] xl:[mt-2rem]'
           />
         </div>
       </section>

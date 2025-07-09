@@ -82,20 +82,17 @@ function Hero() {
         </div>
 
         {/* Product Image */}
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative">
-            <Image
-              alt="AttendanceHub Dashboard"
-              src="/Macbook_Air_Mockup_2.png"
-              width={1200}
-              height={600}
-              className="w-full h-auto rounded-2xl shadow-2xl border border-slate-200/50"
-              priority
-            />
-            {/* Overlay gradient for better integration */}
-            <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent rounded-2xl"></div>
-          </div>
-        </div>
+        <div className="relative w-full flex justify-center -mt-12 sm:-mt-20">
+  <Image
+    alt="AttendanceHub Dashboard"
+    src="/Macbook_Air_Mockup_2.png"
+    width={1200}
+    height={600}
+    className="w-auto max-w-[90%] md:max-w-5xl h-auto object-contain"
+    priority
+  />
+</div>
+
 
         {/* Stats Section */}
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">

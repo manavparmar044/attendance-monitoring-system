@@ -30,7 +30,7 @@ function Hero() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-[#51cef4]/10 text-[#0f5487] px-4 py-2 rounded-full text-sm font-medium mb-8 border border-[#51cef4]/20">
               <CheckCircle className="h-4 w-4" />
-              Trusted by 500+ institutions
+              Trusted by many institutions
             </div>
 
             {/* Main Headline */}
@@ -95,24 +95,26 @@ function Hero() {
 
         {/* Stats Section */}
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-[#51cef4]/20 hover:border-[#1665a0]/30 transition-colors">
-              <div className="text-3xl font-bold text-[#1665a0] mb-2">99.9%</div>
-              <div className="text-slate-600 font-medium">Uptime Guarantee</div>
-              <div className="text-sm text-slate-500 mt-1">Always available when you need it</div>
-            </div>
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-[#51cef4]/20 hover:border-[#1665a0]/30 transition-colors">
-              <div className="text-3xl font-bold text-[#0f5487] mb-2">500+</div>
-              <div className="text-slate-600 font-medium">Active Institutions</div>
-              <div className="text-sm text-slate-500 mt-1">Trusted by educational leaders</div>
-            </div>
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-[#51cef4]/20 hover:border-[#1665a0]/30 transition-colors">
-              <div className="text-3xl font-bold text-[#51cef4] mb-2">50K+</div>
-              <div className="text-slate-600 font-medium">Students Tracked</div>
-              <div className="text-sm text-slate-500 mt-1">Seamless attendance management</div>
-            </div>
-          </div>
-        </div>
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+    <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-[#51cef4]/20 hover:border-[#1665a0]/30 transition-colors">
+      <div className="text-3xl font-bold text-[#1665a0] mb-2">99.9%</div>
+      <div className="text-slate-600 font-medium">Uptime Guarantee</div>
+      <div className="text-sm text-slate-500 mt-1">Always available when you need it</div>
+    </div>
+
+    <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-[#51cef4]/20 hover:border-[#1665a0]/30 transition-colors">
+      <div className="text-3xl font-bold text-[#0f5487] mb-2">Real-Time</div>
+      <div className="text-slate-600 font-medium">Live Attendance</div>
+      <div className="text-sm text-slate-500 mt-1">Monitor attendance as it's marked</div>
+    </div>
+
+    <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-[#51cef4]/20 hover:border-[#1665a0]/30 transition-colors">
+      <div className="text-3xl font-bold text-[#51cef4] mb-2">100%</div>
+      <div className="text-slate-600 font-medium">Data Security</div>
+      <div className="text-sm text-slate-500 mt-1">Your data is encrypted & backed up</div>
+    </div>
+  </div>
+</div>
       </section>
     </div>
   )

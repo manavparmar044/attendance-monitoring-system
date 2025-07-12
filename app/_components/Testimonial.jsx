@@ -304,7 +304,7 @@ export default function Testimonials() {
             <div className="relative">
               <h3 className="text-2xl md:text-3xl font-bold mb-4">Ready to Join Them?</h3>
               <p className="text-lg mb-6 text-white/90 max-w-2xl mx-auto">
-                Start your free trial today and see why thousands of institutions trust AttendanceHub
+                Start your free trial today and see why many teachers trust AttendanceHub
               </p>
               <Button
                 size="lg"

@@ -139,7 +139,7 @@ function Footer() {
             <ul className="space-y-3 text-sm">
               <li>
                 <a
-                  href="https://www.linkedin.com/in/manav-manish-parmar-129869208/"
+                  href="https://www.linkedin.com/in/mmparmar044/"
                   className="text-white/70 hover:text-[#51cef4] transition-colors duration-200 hover:translate-x-1 inline-block"
                 >
                   Contact Support

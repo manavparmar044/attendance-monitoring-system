@@ -2,7 +2,7 @@
 
 import { useUser } from "@clerk/nextjs"
 import { db } from "@/config/FirebaseConfig"
-import { collection, getDocs } from "firebase/firestore"
+import { collection, getDocs, query, where } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { Users, BarChart3, CheckCircle } from "lucide-react"
 
@@ -15,27 +15,40 @@ export default function DashboardPage() {
     totalAttendance: 0,
   })
 
+  // const classesQuery = query(
+  //   collection(db,"classes",
+  //   where("email","==",user?.primaryEmailAddress?.emailAddress))
+  // )
+
   useEffect(() => {
     if (user) fetchStats()
   }, [user])
 
   const fetchStats = async () => {
     try {
+      const userEmail = user?.primaryEmailAddress?.emailAddress
+      if (!userEmail) return // prevent query with undefined email
+  
+      const classesQuery = query(
+        collection(db, "classes"),
+        where("email", "==", userEmail)
+      )
+  
+      const classesSnap = await getDocs(classesQuery)
+      const totalClasses = classesSnap.size
+  
       let totalStudents = 0
       let totalAttendanceSessions = 0
-
-      const classesSnap = await getDocs(collection(db, "classes"))
-      const totalClasses = classesSnap.size
-
+  
       for (const classDoc of classesSnap.docs) {
         const classData = classDoc.data()
         const students = classData.students || []
         const attendanceRecords = classData.attendance || []
-
+  
         totalStudents += students.length
         totalAttendanceSessions += attendanceRecords.length
       }
-
+  
       setStats({
         students: totalStudents,
         classes: totalClasses,

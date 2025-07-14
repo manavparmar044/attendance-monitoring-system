@@ -66,15 +66,7 @@ function Footer() {
                   href="#"
                   className="text-white/70 hover:text-[#51cef4] transition-colors duration-200 hover:translate-x-1 inline-block"
                 >
-                  Automated Notifications
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-white/70 hover:text-[#51cef4] transition-colors duration-200 hover:translate-x-1 inline-block"
-                >
-                  Analytics & Reports
+                  Analytics
                 </a>
               </li>
               <li>

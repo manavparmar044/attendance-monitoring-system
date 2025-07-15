@@ -64,6 +64,10 @@ function Page() {
 
     const addClass = async () => {
         try {
+            if (classes.length >= 5) {
+                alert("You can only create up to 5 classes.");
+                return;
+            }
             await addDoc(collection(db, "classes"), {
                 className: className,
                 email: user.primaryEmailAddress.emailAddress,
@@ -100,11 +104,14 @@ function Page() {
             <div className="flex justify-between items-center">
                 <h2 className="text-2xl font-semibold">Classes</h2>
                 <button
-                    onClick={() => setOpen(true)}
-                    className="bg-primary rounded-md px-3 py-2 text-white flex justify-between gap-2 cursor-pointer"
-                >
-                    Add Class <Plus />
-                </button>
+  onClick={() => setOpen(true)}
+  disabled={classes.length >= 5}
+  className={`rounded-md px-3 py-2 flex justify-between gap-2 cursor-pointer text-white ${
+    classes.length >= 5 ? "bg-gray-400 cursor-not-allowed" : "bg-primary"
+  }`}
+>
+  Add Class <Plus />
+</button>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4">
                 {classes.map((cls, index) => (

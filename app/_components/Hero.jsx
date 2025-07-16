@@ -151,79 +151,7 @@ function Hero() {
       }
 
       // Image container and image animations
-      if (imageContainerRef.current && imageRef.current) {
-        // Initial image container animation
-        gsap.fromTo(
-          imageContainerRef.current,
-          {
-            y: 100,
-            opacity: 0,
-            scale: 0.85,
-          },
-          {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 1.2,
-            ease: "power3.out",
-            delay: 0.8,
-          },
-        )
-
-        // Scroll-triggered scaling and floating effect for the entire container
-        gsap.to(imageContainerRef.current, {
-          scale: 1.1,
-          y: -40,
-          scrollTrigger: {
-            trigger: imageContainerRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
-            scrub: 1,
-            ease: "power2.out",
-          },
-        })
-
-        // Additional image-specific animations
-        gsap.fromTo(
-          imageRef.current,
-          {
-            rotationY: -10,
-          },
-          {
-            rotationY: 0,
-            duration: 1.2,
-            ease: "power3.out",
-            delay: 1,
-          },
-        )
-
-        // Subtle rotation on scroll for the image itself
-        gsap.to(imageRef.current, {
-          rotationY: 3,
-          scrollTrigger: {
-            trigger: imageContainerRef.current,
-            start: "top 60%",
-            end: "bottom 40%",
-            scrub: 2,
-            ease: "power1.inOut",
-          },
-        })
-
-        // Floating animation for decorative elements
-        const decorativeElements = imageContainerRef.current.querySelectorAll(".decorative-dot")
-        decorativeElements.forEach((dot, index) => {
-          gsap.to(dot, {
-            y: index % 2 === 0 ? -15 : 10,
-            x: index % 2 === 0 ? 10 : -8,
-            rotation: index % 2 === 0 ? 360 : -360,
-            duration: 4 + index,
-            repeat: -1,
-            yoyo: true,
-            ease: "power1.inOut",
-            delay: index * 0.5,
-          })
-        })
-      }
+      
 
       // Stats section animation
       if (statsRef.current) {
@@ -358,9 +286,9 @@ function Hero() {
             >
               {splitTextIntoWords("Save valuable time,")}
               <br />
-              <span className="bg-gradient-to-r from-[#1665a0] to-[#0f5487] bg-clip-text text-transparent">
-                {splitTextIntoWords("Increase Productivity")}
-              </span>
+              <span className="bg-gradient-to-r from-[#0f5487] to-[#0e4e7d] bg-clip-text">
+  {splitTextIntoWords("Increase Productivity")}
+</span>
             </h1>
 
             {/* Subheading */}
@@ -430,12 +358,6 @@ function Hero() {
                   transformOrigin: "center center",
                 }}
               />
-
-              {/* Decorative elements with individual animations */}
-              <div className="decorative-dot absolute -top-4 -left-4 w-8 h-8 bg-gradient-to-br from-[#51cef4] to-[#1665a0] rounded-full opacity-60"></div>
-              <div className="decorative-dot absolute -top-2 -right-6 w-6 h-6 bg-gradient-to-br from-[#1665a0] to-[#0f5487] rounded-full opacity-40"></div>
-              <div className="decorative-dot absolute -bottom-6 -left-2 w-10 h-10 bg-gradient-to-br from-[#51cef4]/50 to-[#1665a0]/50 rounded-full opacity-30"></div>
-              <div className="decorative-dot absolute -bottom-4 -right-4 w-7 h-7 bg-gradient-to-br from-[#0f5487] to-[#51cef4] rounded-full opacity-50"></div>
             </div>
           </div>
         </div>

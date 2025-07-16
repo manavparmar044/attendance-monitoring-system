@@ -22,6 +22,7 @@ function Hero() {
 
   // Refs for animations
   const imageRef = useRef(null)
+  const imageContainerRef = useRef(null)
   const heroContentRef = useRef(null)
   const badgeRef = useRef(null)
   const headlineRef = useRef(null)
@@ -149,34 +150,32 @@ function Hero() {
         )
       }
 
-      // Image scroll animation with parallax effect
-      if (imageRef.current) {
-        // Initial image animation
+      // Image container and image animations
+      if (imageContainerRef.current && imageRef.current) {
+        // Initial image container animation
         gsap.fromTo(
-          imageRef.current,
+          imageContainerRef.current,
           {
             y: 100,
             opacity: 0,
-            scale: 0.8,
-            rotationY: -15,
+            scale: 0.85,
           },
           {
             y: 0,
             opacity: 1,
             scale: 1,
-            rotationY: 0,
             duration: 1.2,
             ease: "power3.out",
             delay: 0.8,
           },
         )
 
-        // Scroll-triggered scaling and floating effect
-        gsap.to(imageRef.current, {
-          scale: 1.05,
-          y: -20,
+        // Scroll-triggered scaling and floating effect for the entire container
+        gsap.to(imageContainerRef.current, {
+          scale: 1.1,
+          y: -40,
           scrollTrigger: {
-            trigger: imageRef.current,
+            trigger: imageContainerRef.current,
             start: "top 80%",
             end: "bottom 20%",
             scrub: 1,
@@ -184,16 +183,45 @@ function Hero() {
           },
         })
 
-        // Subtle rotation on scroll
+        // Additional image-specific animations
+        gsap.fromTo(
+          imageRef.current,
+          {
+            rotationY: -10,
+          },
+          {
+            rotationY: 0,
+            duration: 1.2,
+            ease: "power3.out",
+            delay: 1,
+          },
+        )
+
+        // Subtle rotation on scroll for the image itself
         gsap.to(imageRef.current, {
-          rotationY: 5,
+          rotationY: 3,
           scrollTrigger: {
-            trigger: imageRef.current,
+            trigger: imageContainerRef.current,
             start: "top 60%",
             end: "bottom 40%",
             scrub: 2,
             ease: "power1.inOut",
           },
+        })
+
+        // Floating animation for decorative elements
+        const decorativeElements = imageContainerRef.current.querySelectorAll(".decorative-dot")
+        decorativeElements.forEach((dot, index) => {
+          gsap.to(dot, {
+            y: index % 2 === 0 ? -15 : 10,
+            x: index % 2 === 0 ? 10 : -8,
+            rotation: index % 2 === 0 ? 360 : -360,
+            duration: 4 + index,
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut",
+            delay: index * 0.5,
+          })
         })
       }
 
@@ -377,21 +405,43 @@ function Hero() {
           </div>
         </div>
 
-        {/* Product Image */}
-        <div className="relative w-full flex justify-center -mt-12 sm:-mt-20">
-          <Image
-            ref={imageRef}
-            alt="AttendanceHub Dashboard"
-            src="/demo.png"
-            width={1200}
-            height={600}
-            className="w-auto max-w-[90%] md:max-w-5xl h-auto object-contain"
-            priority
-          />
+        {/* Product Image - Fixed for Scroll Animations */}
+        <div className="relative w-full flex justify-center -mt-8 sm:-mt-16 px-4">
+          <div
+            ref={imageContainerRef}
+            className="relative w-full max-w-6xl"
+            style={{ transformOrigin: "center center" }}
+          >
+            {/* Background glow effect */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#51cef4]/10 via-transparent to-transparent rounded-3xl blur-3xl scale-110 -z-10"></div>
+
+            {/* Image container with enhanced styling */}
+            <div className="relative bg-white/20 backdrop-blur-sm rounded-3xl p-4 shadow-2xl border border-white/30">
+              <Image
+                ref={imageRef}
+                alt="AttendanceHub Dashboard"
+                src="/demo.png"
+                width={1400}
+                height={800}
+                className="w-full h-auto object-contain rounded-2xl shadow-xl"
+                priority
+                style={{
+                  filter: "drop-shadow(0 25px 50px rgba(15, 84, 135, 0.15))",
+                  transformOrigin: "center center",
+                }}
+              />
+
+              {/* Decorative elements with individual animations */}
+              <div className="decorative-dot absolute -top-4 -left-4 w-8 h-8 bg-gradient-to-br from-[#51cef4] to-[#1665a0] rounded-full opacity-60"></div>
+              <div className="decorative-dot absolute -top-2 -right-6 w-6 h-6 bg-gradient-to-br from-[#1665a0] to-[#0f5487] rounded-full opacity-40"></div>
+              <div className="decorative-dot absolute -bottom-6 -left-2 w-10 h-10 bg-gradient-to-br from-[#51cef4]/50 to-[#1665a0]/50 rounded-full opacity-30"></div>
+              <div className="decorative-dot absolute -bottom-4 -right-4 w-7 h-7 bg-gradient-to-br from-[#0f5487] to-[#51cef4] rounded-full opacity-50"></div>
+            </div>
+          </div>
         </div>
 
         {/* Stats Section */}
-        <div ref={statsRef} className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div ref={statsRef} className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 mt-16">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="stat-card bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-[#51cef4]/20 hover:border-[#1665a0]/30 transition-colors cursor-pointer">
               <div className="text-3xl font-bold text-[#1665a0] mb-2">99.9%</div>
